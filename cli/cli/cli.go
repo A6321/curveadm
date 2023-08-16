@@ -94,11 +94,11 @@ func NewCurveAdm() (*CurveAdm, error) {
 
 	rootDir := fmt.Sprintf("%s/.curveadm", home)
 	curveadm := &CurveAdm{
-		rootDir:   rootDir,
-		dataDir:   path.Join(rootDir, "data"),
-		pluginDir: path.Join(rootDir, "plugins"),
-		logDir:    path.Join(rootDir, "logs"),
-		tempDir:   path.Join(rootDir, "temp"),
+		rootDir:      rootDir,
+		dataDir:      path.Join(rootDir, "data"),
+		pluginDir:    path.Join(rootDir, "plugins"),
+		logDir:       path.Join(rootDir, "logs"),
+		tempDir:      path.Join(rootDir, "temp"),
 		httpConfPath: path.Join(rootDir, "http/conf"),
 		httpLogPath:  path.Join(rootDir, "http/logs"),
 	}
@@ -248,7 +248,7 @@ func (curveadm *CurveAdm) detectVersion() {
 }
 
 func (curveadm *CurveAdm) Upgrade() (bool, error) {
-	if curveadm.config.GetAutoUpgrade() == false {
+	if !curveadm.config.GetAutoUpgrade() {
 		return false, nil
 	}
 
@@ -549,8 +549,7 @@ func (curveadm *CurveAdm) PostAudit(id int64, ec error) {
 		return
 	}
 
-	auditLog := auditLogs[0]
-	status := auditLog.Status
+	var status int
 	errorCode := 0
 	if ec == nil {
 		status = comm.AUDIT_STATUS_SUCCESS

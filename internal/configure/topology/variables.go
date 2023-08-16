@@ -139,7 +139,7 @@ func skip(dc *DeployConfig, v Var) bool {
 func addVariables(dcs []*DeployConfig, idx int, vars []Var) error {
 	dc := dcs[idx]
 	for _, v := range vars {
-		if skip(dc, v) == true {
+		if skip(dc, v) {
 			continue
 		}
 
