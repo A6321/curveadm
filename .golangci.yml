@@ -19,8 +19,6 @@ linters:
     # Checks for dangerous unicode character sequences.
     - bidichk
   disable:
-    # ignore unused check
-    - unused
     # ignore errcheck
     - errcheck
 linters-settings:
