@@ -19,7 +19,6 @@ linters:
     # Checks for dangerous unicode character sequences.
     - bidichk
   disable:
-    # ignore errcheck
     - errcheck
 linters-settings:
   gosec:
